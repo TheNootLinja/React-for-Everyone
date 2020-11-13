@@ -2,6 +2,8 @@ import propTypes from "react";
 import logo from './logo.svg';
 import './App.css';
 import { Counter } from "./Counter.js"
+import { Accordion } from "./Accordion.js"
+
 
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Counter />
+        <Accordion />
       </header>
     </div>
   );
