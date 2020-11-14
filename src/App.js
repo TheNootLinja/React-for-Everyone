@@ -1,36 +1,15 @@
-import propTypes from "react";
-import logo from './logo.svg';
 import './App.css';
-import { Counter } from "./Counter.js"
-import { Accordion } from "./Accordion.js"
+import { MoviesList } from "./MoviesList.js"
+
 
 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Counter />
-        <Accordion />
-      </header>
+      <MoviesList />
     </div>
   );
-}
-
-// What I am doing below in the arguments of the HelloWorld
-// function is destructuring the props object into the
-// variables I know will be inside of the object.
-function HelloWorld({name, greeting="Hello"}) {
-  return (
-      <h1>
-        {greeting} {name}!
-      </h1>
-  )
-}
-
-HelloWorld.propTypes ={
-  name: propTypes.string,
-  greeting: propTypes.string,
 }
 
 export default App;
