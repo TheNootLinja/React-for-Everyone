@@ -1,5 +1,5 @@
 import './App.css';
-import { MoviesList } from "./MoviesList.js"
+import { MoviesList } from "./movies/MoviesList.js"
 
 
 
