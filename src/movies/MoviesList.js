@@ -1,36 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Movie } from './Movie.js';
 import { Filter } from '../Filter.js';
 
-const movies = [
-    {
-        name: "36th Chamber"
-    },
-    {
-        name: "5 Deadly Venoms"
-    },
-    {
-        name: "Man of Iron"
-    },
-    {
-        name: "Boop the Snoot"
-    },
-]
+const API_URL = "https://api.themoviedb.org/3/discover/movie?api_key=bd5d8ee62a1a0d97362d3c5924713f9a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
 
 export function MoviesList() {
+    const [filter, setFilter] = useState("");
+    const [movies, setMovies] = useState([]);
 
-    const [filter, setFilter] = useState("")
+    const fetchMovies = async () => {
+        try {
+            const res = await fetch(API_URL);
+            const movies = await res.json();
+            setMovies(movies.results);
+            console.log(movies);
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    useEffect( () => {
+        fetchMovies();
+    }, [])
 
     return (
         <div>
             <Filter filter={filter} setFilter={setFilter}/>
             <ul>
                 { movies.filter(movie => 
-                movie.name.toLowerCase()
+                movie.title.toLowerCase()
                 .includes(filter.toLowerCase()))
                 .map(( movie ) =>
                     (
-                        <Movie movie={movie} key={movie.name}/>
+                        <Movie movie={movie} key={movie.id}/>
                     )
                 )}
             </ul>
