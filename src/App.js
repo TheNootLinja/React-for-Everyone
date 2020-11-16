@@ -1,5 +1,11 @@
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import { MoviesList } from "./movies/MoviesList.js"
+import { MovieDetail } from "./movies/MovieDetail.js"
+import './App.css';
 
 
 
@@ -7,7 +13,16 @@ import { MoviesList } from "./movies/MoviesList.js"
 function App() {
   return (
     <div className="App">
-      <MoviesList />
+      <Router>
+        <Switch>
+          <Route path="/movie/:id">
+            <MovieDetail />
+          </Route>
+          <Route path="/">
+            <MoviesList />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
